@@ -19,3 +19,14 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+data class Position(val y: Int, val x: Int)
+
+fun Long.expecting(expectation: Long): Boolean {
+    if (this == expectation) {
+        println("Answer found! $this")
+    } else {
+        System.err.println("Expecting $expectation, found $this. Off by ${expectation - this}")
+    }
+    return this == expectation
+}
