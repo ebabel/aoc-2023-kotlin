@@ -2,7 +2,6 @@ import kotlin.math.pow
 
 fun main() {
 
-
     fun part1(input: List<String>): Long {
         return input.map { line ->
             val (my, winning) = line.split("|")
