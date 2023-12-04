@@ -1,3 +1,9 @@
+package day03
+
+import Position
+import expecting
+import readInput
+
 fun main() {
 
     fun part1(input: List<String>): Long {
