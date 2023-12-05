@@ -3,6 +3,8 @@ package day02
 import readInput
 
 fun main() {
+    class A; val dir = A().javaClass.packageName
+
     fun part1(input: List<String>): Int {
         val mapOfGames = input.map { line ->
             val a = line.split(":")
@@ -96,12 +98,12 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day02_test")
+    val testInput = readInput("$dir/Day02_test")
 //    val testInput2 = readInput("Day02_test2")
     check(part1(testInput) == 8)
     check(part2(testInput) == 2286)
 
-    val input = readInput("Day02")
+    val input = readInput("$dir/Day02")
     println("Part1 solution: ${part1(input)}")
     println("Part2 solution: ${part2(input)}")
 }

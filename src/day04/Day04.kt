@@ -1,8 +1,8 @@
 package day04
 
 import expecting
+import powLong
 import readInput
-import kotlin.math.pow
 
 fun main() {
 
@@ -12,14 +12,14 @@ fun main() {
             val myNums = my.trim().substringAfter(":").trim().split(" ").filter { it.isNotEmpty() }
             val winNums = winning.trim().split(" ").filter { it.isNotEmpty() }
 
-            2.0.pow(
+            2.powLong(
                 myNums
                     .intersect(winNums)
                     .also {
 //                        println(it)
                     }.distinct()
                     .count() - 1
-            ).toLong().also {
+            ).also {
 //                println(it)
             }
 
@@ -60,12 +60,12 @@ fun main() {
     }
 
 
-    val testInput = readInput("Day04_test")
+    val testInput = readInput("day04/Day04_test")
 
     check(part1(testInput).expecting(13L))
     check(part2(testInput).expecting(30L))
 
-    val input = readInput("Day04")
+    val input = readInput("day04/Day04")
     println("Part1 solution: ${part1(input)}")
     println("Part2 solution: ${part2(input)}")
 

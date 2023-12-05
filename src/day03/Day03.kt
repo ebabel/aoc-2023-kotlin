@@ -5,6 +5,7 @@ import expecting
 import readInput
 
 fun main() {
+    class A; val dir = A().javaClass.packageName
 
     fun part1(input: List<String>): Long {
 
@@ -165,12 +166,12 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day03_test")
+    val testInput = readInput("$dir/Day03_test")
 //    val testInput2 = readInput("Day03_test2")
 //    check(part1(testInput) == 4361)
     check(part2(testInput).expecting(467835L))
 
-    val input = readInput("Day03")
+    val input = readInput("$dir/Day03")
 //    println("Part1 solution: ${part1(input)}")
     // your answer is too low 77111577
     // your answer is too low 77351277

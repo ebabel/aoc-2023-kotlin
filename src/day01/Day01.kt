@@ -4,6 +4,8 @@ import println
 import readInput
 
 fun main() {
+    class A; val dir = A().javaClass.packageName
+
     fun part1(input: List<String>): Int {
         val a = input.map {
             val b = it
@@ -48,12 +50,12 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    val testInput2 = readInput("Day01_test2")
+    val testInput = readInput("$dir/Day01_test")
+    val testInput2 = readInput("$dir/Day01_test2")
     check(part1(testInput) == 142)
     check(part2(testInput2) == 281)
 
-    val input = readInput("Day01")
+    val input = readInput("$dir/Day01")
     println("Part1 solution: ${part1(input)}")
     println("Part2 solution: ${part2(input)}")
 }

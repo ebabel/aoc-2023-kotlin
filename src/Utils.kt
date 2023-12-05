@@ -2,6 +2,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
+import kotlin.math.pow
 
 /**
  * Reads lines from the given input txt file.
@@ -26,7 +27,10 @@ fun Long.expecting(expectation: Long): Boolean {
     return this == expectation
 }
 
-fun Any?.println() = this.also{ println(it) }
+fun <T> T.println(): T {
+    println(this)
+    return this
+}
 
 fun <R> List<R>.alsoPrintOnLines(): List<R> {
     printOnLn(this)
@@ -56,3 +60,19 @@ fun Point.dist2(x: Int, y: Int): Int {
     return dx * dx + dy * dy
 }
 
+fun Long.powLong(n: Long): Long {
+    return this.toFloat().pow(n.toFloat()).toLong()
+}
+
+fun Int.powLong(n: Long): Long {
+    return this.toFloat().pow(n.toFloat()).toLong()
+}
+
+fun Int.powLong(n: Int): Long {
+    return this.toFloat().pow(n.toFloat()).toLong()
+}
+
+fun Int.isEven(): Boolean = this and 1 == 0
+fun Int.isOdd(): Boolean = this % 2 == 1
+
+fun <T> List<T>.takeAfter(n: Int): List<T> = takeLast(size-n)
