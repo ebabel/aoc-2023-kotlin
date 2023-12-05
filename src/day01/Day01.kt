@@ -9,9 +9,8 @@ fun main() {
     fun part1(input: List<String>): Int {
         val a = input.map {
             val b = it
-                .map { it.code }
-                .filter { it >= '0'.code && it <= '9'.code }
-                .map { it - '0'.code }
+                .filter { it.isDigit() }
+                .map { Character.getNumericValue(it) }
                 .map { it.toString() }
             val c = b.first() + b.last()
             c.toInt()

@@ -76,3 +76,32 @@ fun Int.isEven(): Boolean = this and 1 == 0
 fun Int.isOdd(): Boolean = this % 2 == 1
 
 fun <T> List<T>.takeAfter(n: Int): List<T> = takeLast(size-n)
+
+/**
+ * Finds all numbers in a string and returns them as a Sequence of a number.
+ * https://github.com/nbanman/Play2022/blob/master/src/main/kotlin/org/gristle/adventOfCode/utilities/parsing.kt
+ */
+inline fun <N : Number> String.getNumbers(crossinline transform: String.() -> N?): Sequence<N> =
+    Regex("""(?<!\d)-?\d+""")
+        .findAll(this)
+        .mapNotNull { it.value.transform() }
+
+/**
+ * Finds all numbers in a string and returns them as a Sequence of Int.
+ */
+fun String.getInts(): Sequence<Int> = getNumbers(String::toIntOrNull)
+
+/**
+ * Finds all numbers in a string and returns them as a List of Int.
+ */
+fun String.getIntList() = getInts().toList()
+
+/**
+ * Finds all numbers in a string and returns them as a Sequence of Long.
+ */
+fun String.getLongs(): Sequence<Long> = getNumbers(String::toLongOrNull)
+
+/**
+ * Finds all numbers in a string and returns them as a List of Long.
+ */
+fun String.getLongList() = getLongs().toList()
