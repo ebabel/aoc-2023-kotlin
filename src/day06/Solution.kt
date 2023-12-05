@@ -1,4 +1,4 @@
-package day0X
+package day06
 
 import expecting
 import readInput
