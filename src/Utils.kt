@@ -3,6 +3,8 @@ import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
 import kotlin.math.pow
+import kotlin.time.measureTime
+import kotlin.time.measureTimedValue
 
 /**
  * Reads lines from the given input txt file.
@@ -25,6 +27,32 @@ fun Long.expecting(expectation: Long): Boolean {
         System.err.println("Expecting $expectation, found $this. Off by ${expectation - this}")
     }
     return this == expectation
+}
+
+fun solution(
+    title: String,
+    expectation: Long? = null,
+    shouldFail: Boolean = false,
+    test: () -> Long,
+) {
+    System.err.println(" ")
+    measureTimedValue(test).let {
+        System.err.println("$title (${it.duration})")
+        val output = if (expectation == null || expectation == it.value) {
+            "Answer found! ${it.value}"
+        } else {
+            "Expecting $expectation, found ${it.value}. Off by ${expectation - it.value}"
+        }
+        if (expectation == it.value) {
+            System.err.println(output)
+        } else if (shouldFail) {
+            error(output)
+        } else {
+            System.err.println(output)
+        }
+
+    }
+    System.err.println(" ")
 }
 
 fun <T> T.println(): T {

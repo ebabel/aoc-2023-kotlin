@@ -1,7 +1,7 @@
 package day0X
 
-import expecting
 import readInput
+import solution
 
 fun main() {
     class A; val dir = A().javaClass.packageName
@@ -20,10 +20,9 @@ fun main() {
     }
     val testInput = readInput("$dir/test_input")
 
-    check(part1(testInput).expecting(13L))
-//    check(part2(testInput).expecting(30L))
-
+    solution("Part1 test: ", 1L, true) { part1(testInput) }
+//    solution("Part2 test: ", 1L, true) { part2(testInput) }
     val input = readInput("$dir/input")
-    println("Part1 solution: ${part1(input)}")
-//    println("Part2 solution: ${part2(input)}")
+    solution("Part1 solution: ") { part1(input) }
+//    solution("Part2 solution: ") { part2(input) }
 }
