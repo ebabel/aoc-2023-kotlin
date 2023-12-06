@@ -5,7 +5,7 @@
 
 [aoc]: https://adventofcode.com
 
-12 stars!
+12*
 
 ```
          1111111111222222
