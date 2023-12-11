@@ -2,8 +2,8 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
+import kotlin.math.abs
 import kotlin.math.pow
-import kotlin.time.measureTime
 import kotlin.time.measureTimedValue
 
 /**
@@ -77,16 +77,23 @@ fun List<Int>.productOf() = reduce { acc, i ->
     acc * i
 }
 
-data class Point(val x: Int = 0, val y: Int = 0) {
+data class Point(val x: Long = 0, val y: Long = 0) {
     override fun toString(): String = "[$x, $y]"
 }
 operator fun Point.minus(other: Point): Point = Point(x - other.x, y - other.y)
 operator fun Point.plus(other: Point): Point = Point(x + other.x, y + other.y)
-fun Point.dist2(x: Int, y: Int): Int {
+fun Point.dist2(x: Long, y: Long): Long {
     val dx = this.x - x
     val dy = this.y - y
     return dx * dx + dy * dy
 }
+fun Point.dist2(other: Point): Long {
+    val dx = this.x - other.x
+    val dy = this.y - other.y
+    return dx * dx + dy * dy
+}
+fun Point.manhattanDistance(other: Point) = abs(other.x - x) + abs(other.y - y)
+
 
 fun Long.powLong(n: Long): Long {
     return this.toFloat().pow(n.toFloat()).toLong()
