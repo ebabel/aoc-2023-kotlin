@@ -1,6 +1,6 @@
 package day11
 
-import Point
+import PointL
 import manhattanDistance
 import readInput
 import solution
@@ -27,7 +27,7 @@ fun main() {
         }
         println("empty cols: $emptyColumns rows: $emptyRows")
 
-        val list = mutableListOf<Point>()
+        val list = mutableListOf<PointL>()
         var y = 0
         var y1 = 0L
         while (y < input.size) {
@@ -39,7 +39,7 @@ fun main() {
 
                     if (!emptyColumns.contains(x)) {
                         if (input[y][x] == '#') {
-                            list.add(Point(x1, y1))
+                            list.add(PointL(x1, y1))
                         }
                     } else {
                         x1++
@@ -81,7 +81,7 @@ fun main() {
             }
         }
 
-        val list = mutableListOf<Point>()
+        val list = mutableListOf<PointL>()
         var y = 0
         var y1 = 0L
         val galaxyZoomMod = modifier - 1L
@@ -94,7 +94,7 @@ fun main() {
 
                     if (!emptyColumns.contains(x)) {
                         if (input[y][x] == '#') {
-                            list.add(Point(x1, y1))
+                            list.add(PointL(x1, y1))
                         }
                     } else {
                         x1 += galaxyZoomMod

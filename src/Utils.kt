@@ -77,22 +77,26 @@ fun List<Int>.productOf() = reduce { acc, i ->
     acc * i
 }
 
-data class Point(val x: Long = 0, val y: Long = 0) {
+data class Point(val x: Int = 0, val y: Int = 0) {
     override fun toString(): String = "[$x, $y]"
 }
-operator fun Point.minus(other: Point): Point = Point(x - other.x, y - other.y)
+data class PointL(val x: Long = 0, val y: Long = 0) {
+    override fun toString(): String = "[$x, $y]"
+}
+operator fun PointL.minus(other: PointL): PointL = PointL(x - other.x, y - other.y)
+operator fun PointL.plus(other: PointL): PointL = PointL(x + other.x, y + other.y)
 operator fun Point.plus(other: Point): Point = Point(x + other.x, y + other.y)
-fun Point.dist2(x: Long, y: Long): Long {
+fun PointL.dist2(x: Long, y: Long): Long {
     val dx = this.x - x
     val dy = this.y - y
     return dx * dx + dy * dy
 }
-fun Point.dist2(other: Point): Long {
+fun PointL.dist2(other: PointL): Long {
     val dx = this.x - other.x
     val dy = this.y - other.y
     return dx * dx + dy * dy
 }
-fun Point.manhattanDistance(other: Point) = abs(other.x - x) + abs(other.y - y)
+fun PointL.manhattanDistance(other: PointL) = abs(other.x - x) + abs(other.y - y)
 
 
 fun Long.powLong(n: Long): Long {
