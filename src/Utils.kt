@@ -98,6 +98,13 @@ fun PointL.dist2(other: PointL): Long {
 }
 fun PointL.manhattanDistance(other: PointL) = abs(other.x - x) + abs(other.y - y)
 
+enum class Direction(val dir: Point) {
+    SOUTH (Point(0, 1)),
+    NORTH (Point(0, -1)),
+    WEST (Point(-1, 0)),
+    EAST (Point(1, 0)),
+}
+
 
 fun Long.powLong(n: Long): Long {
     return this.toFloat().pow(n.toFloat()).toLong()
