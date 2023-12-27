@@ -121,5 +121,5 @@ fun main() {
     solution("Part2 test: ", 51L, true) { part2(testInput) }
     val input = readInput("$dir/input")
     solution("Part1 solution: ", 7307, true) { part1(input) }
-    solution("Part2 solution: ", 7635, true) { part2(input) }
+    solution("Part2 solution: ", 7635, true) { part2(input) } // 33s
 }

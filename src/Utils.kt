@@ -73,6 +73,7 @@ fun <R> printOnLn(list: List<R>) {
 fun List<Long>.productOf() = reduce { acc, i ->
     acc * i
 }
+
 fun List<Int>.productOf() = reduce { acc, i ->
     acc * i
 }
@@ -80,9 +81,11 @@ fun List<Int>.productOf() = reduce { acc, i ->
 data class Point(val x: Int = 0, val y: Int = 0) {
     override fun toString(): String = "[$x, $y]"
 }
+
 data class PointL(val x: Long = 0, val y: Long = 0) {
     override fun toString(): String = "[$x, $y]"
 }
+
 operator fun PointL.minus(other: PointL): PointL = PointL(x - other.x, y - other.y)
 operator fun PointL.plus(other: PointL): PointL = PointL(x + other.x, y + other.y)
 operator fun Point.plus(other: Point): Point = Point(x + other.x, y + other.y)
@@ -91,18 +94,27 @@ fun PointL.dist2(x: Long, y: Long): Long {
     val dy = this.y - y
     return dx * dx + dy * dy
 }
+
 fun PointL.dist2(other: PointL): Long {
     val dx = this.x - other.x
     val dy = this.y - other.y
     return dx * dx + dy * dy
 }
+
 fun PointL.manhattanDistance(other: PointL) = abs(other.x - x) + abs(other.y - y)
 
 enum class Direction(val dir: Point) {
-    SOUTH (Point(0, 1)),
-    NORTH (Point(0, -1)),
-    WEST (Point(-1, 0)),
-    EAST (Point(1, 0)),
+    SOUTH(Point(0, 1)),
+    NORTH(Point(0, -1)),
+    WEST(Point(-1, 0)),
+    EAST(Point(1, 0));
+
+    fun opposite() = when (this) {
+        SOUTH -> NORTH
+        NORTH -> SOUTH
+        WEST -> EAST
+        EAST -> WEST
+    }
 }
 
 
@@ -121,7 +133,7 @@ fun Int.powLong(n: Int): Long {
 fun Int.isEven(): Boolean = this and 1 == 0
 fun Int.isOdd(): Boolean = this % 2 == 1
 
-fun <T> List<T>.takeAfter(n: Int): List<T> = takeLast(size-n)
+fun <T> List<T>.takeAfter(n: Int): List<T> = takeLast(size - n)
 
 /**
  * Finds all numbers in a string and returns them as a Sequence of a number.
@@ -151,3 +163,7 @@ fun String.getLongs(): Sequence<Long> = getNumbers(String::toLongOrNull)
  * Finds all numbers in a string and returns them as a List of Long.
  */
 fun String.getLongList() = getLongs().toList()
+
+fun List<String>.containsPoint(point: Point) =
+    first().indices.contains(point.x) &&
+            indices.contains(point.y)
