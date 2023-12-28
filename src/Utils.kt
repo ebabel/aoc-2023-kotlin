@@ -89,6 +89,9 @@ data class PointL(val x: Long = 0, val y: Long = 0) {
 operator fun PointL.minus(other: PointL): PointL = PointL(x - other.x, y - other.y)
 operator fun PointL.plus(other: PointL): PointL = PointL(x + other.x, y + other.y)
 operator fun Point.plus(other: Point): Point = Point(x + other.x, y + other.y)
+operator fun Point.times(amount: Int): Point = Point(x * amount, y * amount)
+operator fun PointL.times(amount: Long): PointL = PointL(x * amount, y * amount)
+
 fun PointL.dist2(x: Long, y: Long): Long {
     val dx = this.x - x
     val dy = this.y - y
@@ -115,6 +118,21 @@ enum class Direction(val dir: Point) {
         WEST -> EAST
         EAST -> WEST
     }
+
+}
+enum class DirectionL(val dir: PointL) {
+    SOUTH(PointL(0, 1)),
+    NORTH(PointL(0, -1)),
+    WEST(PointL(-1, 0)),
+    EAST(PointL(1, 0));
+
+    fun opposite() = when (this) {
+        SOUTH -> NORTH
+        NORTH -> SOUTH
+        WEST -> EAST
+        EAST -> WEST
+    }
+
 }
 
 
